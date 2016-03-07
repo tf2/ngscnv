@@ -14,39 +14,4 @@ g++ -I . -c -Isrc -I/nfs/ddd0/Tom/cram/cram/samtools-1.2/ -I/nfs/ddd0/Tom/cram/c
 g++ -Isrc -I/nfs/ddd0/Tom/cram/cram/samtools-1.2/ -I/nfs/ddd0/Tom/cram/cram/samtools-1.2/htslib-1.2.1/ -I/nfs/ddd0/Tom/cram/cram/samtools-1.2/htslib-1.2.1/htslib -rdynamic -o ngs ngscnv.o gc.o cwavef.o fh.o util.o adms.o readdata.o cnvdata.o -L/nfs/ddd0/Tom/cram/cram/samtools-1.2/htslib-1.2.1/ -L/nfs/ddd0/Tom/cram/cram/samtools-1.2/ -lhts -lbam -lpthread -lz -lm
 
 
-./ngs rd-project new-project
-
-./ngs rd-project add-baits standard_bait_index.txt
-
-#./ngs rd-project bam-to-rd /nfs/ddd0/Tom/cram/cram/DDD_MAIN5550189.bam DDD_MAIN5550189
-
-./ngs rd-project rd-read DDD_MAIN5550189 17 1 79668277
-
-
-
-
-
-
-./ngs test/gc_test.txt
-
-
-
-bsub -e err.err -o out.out -JmakeBin -Gddd-grp -R"select[mem>2500] rusage[mem=2500]" -M2500  "/nfs/ddd0/Tom/read_depth_index/ngscnv/ngs rdbin /nfs/ddd0/Tom/read_depth_index/lustre_paths.txt /nfs/ddd0/Tom/read_depth_index/ngscnv/SureSelect_50Mb_DDD.txt"
-
-bsub -J"makeBin[1-100]%1" -Gddd-grp -R"select[mem>2500] rusage[mem=2500]" -M2500  "/nfs/ddd0/Tom/read_depth_index/ngscnv/ngs l2r /nfs/ddd0/Tom/read_depth_index/lustre_paths.txt /nfs/ddd0/Tom/read_depth_index/ngscnv/SureSelect_50Mb_DDD.txt"
-
-
-bsub -e err.err -o out.out -JmakeBin -Gddd-grp -R"select[mem>500] rusage[mem=500]" -M500  "/nfs/ddd0/Tom/read_depth_index/ngscnv/ngs rdbin /nfs/ddd0/Tom/read_depth_index/test_names.txt /nfs/ddd0/Tom/read_depth_index/ngscnv/SureSelect_50Mb_DDD.txt"
-
-bsub -J"makeBin[1-25]%10" -Gddd-grp -R"select[mem>500] rusage[mem=500]" -M500  "/nfs/ddd0/Tom/read_depth_index/ngscnv/ngs l2r /nfs/ddd0/Tom/read_depth_index/test_names.txt /nfs/ddd0/Tom/read_depth_index/ngscnv/SureSelect_50Mb_DDD.txt"
-
-
-/nfs/ddd0/Tom/read_depth_index/ngscnv/ngs get_sample /nfs/ddd0/Tom/read_depth_index/test_names.txt /nfs/ddd0/Tom/read_depth_index/ngscnv/SureSelect_50Mb_DDD.txt
-g++ -o ngs rd.o gc.o cwavef.o fh.o util.o
-
-./ngs rdbin ../test_names.txt SureSelect_50Mb_DDD.txt
-
-./ngs l2r ../test_names.txt SureSelect_50Mb_DDD.txt
-
-./ngs get_sample ../test_names.txt SureSelect_50Mb_DDD.txt
 
