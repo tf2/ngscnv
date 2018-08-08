@@ -10,14 +10,14 @@ extern "C" {
 #include <string.h>
 #include <stdio.h>
 #include <unistd.h>
-#include "htslib-1.2.1/htslib/sam.h" 
+#include "htslib-1.2.1/htslib/sam.h"
 #include "samtools.h"
 
 typedef struct {     // file parsing information
     htsFile *fp;     // the file handle
     bam_hdr_t *hdr;  // the file header
     hts_itr_t *iter; // NULL if a region not specified
-    hts_idx_t *idx; // the hts index
+    hts_idx_t *idx; // the hts index he
     int min_mapQ;
 } fdata;
 
